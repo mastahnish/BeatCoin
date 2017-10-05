@@ -3,6 +3,8 @@
 
     <data>
 
+        <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
+
         <variable
             name="exchangeItem"
             type="pl.myosolutions.beatcoin.model.ExchangeItem" />
@@ -55,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@+id/currency_percentage"
                         android:layout_margin="@dimen/exchange_item_text_margin"
-                        android:text="@{exchangeItem.details.last}"  />
+                        android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last)+ ` ` + exchangeItem.conversionCurrency}"   />
 
                     <TextView
                         android:id="@+id/currency_percentage"
