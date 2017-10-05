@@ -1,0 +1,76 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="exchangeItem"
+            type="pl.myosolutions.beatcoin.model.ExchangeItem" />
+    </data>
+
+
+        <android.support.v7.widget.CardView
+
+            android:id="@+id/buttons_card"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+
+                    <ImageView
+                        android:id="@+id/currency_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:src="@mipmap/ic_launcher_round" />
+
+                    <TextView
+                        android:id="@+id/currency_acronym"
+                        android:layout_margin="@dimen/exchange_item_text_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@id/currency_icon"
+                        android:layout_height="wrap_content"
+                        android:text="@{exchangeItem.baseCurrency}"
+                        />
+
+                    <TextView
+                        android:id="@+id/currency_fullname"
+                        android:layout_margin="@dimen/exchange_item_text_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_toRightOf="@id/currency_acronym"
+                        android:layout_height="wrap_content"
+                        android:text="@{exchangeItem.baseCurrencyName}"/>
+
+
+
+                    <TextView
+                        android:id="@+id/currency_current_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/currency_percentage"
+                        android:layout_margin="@dimen/exchange_item_text_margin"
+                        android:text="@{exchangeItem.details.last}"  />
+
+                    <TextView
+                        android:id="@+id/currency_percentage"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_alignBaseline="@id/currency_current_price"
+                        android:layout_margin="@dimen/exchange_item_text_margin"
+                        android:text="BTC"
+                        android:visibility="invisible"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+</layout>
