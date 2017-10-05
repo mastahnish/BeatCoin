@@ -18,12 +18,16 @@ public enum BaseCurrency {
     XMR("XMR", "Monero"),
     BCN("BCN", "Bytecoin"),
     BEN("BEN", "BentynCoin"),
-    GNT("GNT", "Golem"),
+    GNT("GNT", "Golem Network Token"),
     WAVES("WAVES", "Waves"),
     WAP("WAP", "WapniakCoin"),
     KBC("KBC", "KabutoCoin"),
     BEAT("BEAT", "BeatCoin"),
-    LSK("LSK", "Lisk");
+    LSK("LSK", "Lisk"),
+    BKCOIN("BKCOIN", "BEZ KANAŁU Coin"),
+    EOS("EOS", "EOS"),
+    XEM("XEM", "NEM"),
+    SWT("SWT", "SwarmCity Token");
 
     private String id;
     private String name;
