@@ -22,7 +22,7 @@ public enum BaseCurrency {
     WAVES("WAVES", "Waves"),
     WAP("WAP", "WapniakCoin"),
     KBC("KBC", "KabutoCoin"),
-    BEAT("BEAT", "BeatCoin"),
+    BEAT("BEAT", "Beatcoin Things"),
     LSK("LSK", "Lisk"),
     BKCOIN("BKCOIN", "BEZ KANAŁU Coin"),
     EOS("EOS", "EOS"),
