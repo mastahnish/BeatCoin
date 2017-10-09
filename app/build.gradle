@@ -36,6 +36,11 @@ android {
     dataBinding {
         enabled = true
     }
+
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+
 }
 
 dependencies {

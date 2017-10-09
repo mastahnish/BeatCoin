@@ -14,8 +14,6 @@ import pl.myosolutions.beatcoin.R;
 import pl.myosolutions.beatcoin.databinding.ActivityDetialsBinding;
 import pl.myosolutions.beatcoin.model.ExchangeItem;
 
-import static pl.myosolutions.beatcoin.utils.CalculationUtils.calculateSpread;
-import static pl.myosolutions.beatcoin.utils.DigitsUtils.formatWithDelimiters;
 import static pl.myosolutions.beatcoin.workflow.IActivityTransitions.ITransitionsExtras.EXCHANGE_ITEM;
 
 
@@ -44,7 +42,6 @@ public class DetialsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detials);
 
-
         final Bundle args = getIntent().getExtras();
         if(args != null && args.containsKey(EXCHANGE_ITEM)) {
             Gson gson = new Gson();
@@ -58,13 +55,15 @@ public class DetialsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        binding.filialDetails.coinAcronym.setText(currentItem.getBaseCurrency());
-        binding.filialDetails.coinFullname.setText(currentItem.getBaseCurrencyName());
-        binding.filialDetails.coinCurrentValue.setText(formatWithDelimiters(currentItem.getDetails().getLast()) + " " +  currentItem.getConversionCurrency());
-        binding.filialDetails.coinHighValue.setText(formatWithDelimiters(currentItem.getDetails().getHigh()));
-        binding.filialDetails.coinLowValue.setText(formatWithDelimiters(currentItem.getDetails().getLow()));
-        binding.filialDetails.coinSpread.setText(formatWithDelimiters(calculateSpread(currentItem.getDetails().getBid(), currentItem.getDetails().getAsk())));
-        binding.filialDetails.coinVolume.setText(currentItem.getDetails().getVolume());
+        binding.setExchangeItem(currentItem);
+//          binding.setExchangeItem(currentItem);
+//        binding.filialDetails.coinAcronym.setText(currentItem.getBaseCurrency());
+//        binding.filialDetails.coinFullname.setText(currentItem.getBaseCurrencyName());
+//        binding.filialDetails.coinCurrentValue.setText(formatWithDelimiters(currentItem.getDetails().getLast()) + " " +  currentItem.getConversionCurrency());
+//        binding.filialDetails.coinHighValue.setText(formatWithDelimiters(currentItem.getDetails().getHigh()));
+//        binding.filialDetails.coinLowValue.setText(formatWithDelimiters(currentItem.getDetails().getLow()));
+//        binding.filialDetails.coinSpread.setText(formatWithDelimiters(calculateSpread(currentItem.getDetails().getBid(), currentItem.getDetails().getAsk())));
+//        binding.filialDetails.coinVolume.setText(currentItem.getDetails().getVolume());
     }
 
     private void initToolbar(){

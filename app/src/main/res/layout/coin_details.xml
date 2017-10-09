@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <data>
+
+        <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
+        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
+
+        <variable
+            name="exchangeItem"
+            type="pl.myosolutions.beatcoin.model.ExchangeItem" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +36,7 @@
                     android:id="@+id/coin_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher_round" />
+                    app:srcVector="@{exchangeItem.icon}" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -39,14 +49,14 @@
                         android:id="@+id/coin_acronym"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BTC"
+                        android:text="@{exchangeItem.baseCurrency}"
                         android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/coin_fullname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Bitcoin"
+                        android:text="@{exchangeItem.baseCurrencyName}"
                         android:textColor="@color/orange"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -84,7 +94,7 @@
                             android:id="@+id/coin_current_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10000 $"
+                            android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last) + ` ` + exchangeItem.conversionCurrency}"
                             android:textSize="20dp" />
 
                     </LinearLayout>
@@ -124,7 +134,7 @@
                 android:layout_weight="4"
                 android:gravity="center"
                 android:textColor="@color/grey_dark"
-                android:text="123456" />
+                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.high)}" />
 
             <TextView
                 android:layout_width="0dp"
@@ -142,7 +152,7 @@
                 android:gravity="center"
                 android:textColor="@color/grey_dark"
                 android:id="@+id/coin_low_value"
-                android:text="123456" />
+                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.low)}" />
 
         </LinearLayout>
 
@@ -174,7 +184,7 @@
                 android:layout_weight="4"
                 android:gravity="center"
                 android:textColor="@color/grey_dark"
-                android:text="123456" />
+                android:text="@{DigitsUtils.formatWithDelimiters(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask))}" />
 
             <TextView
                 android:layout_width="0dp"
@@ -192,7 +202,7 @@
                 android:layout_weight="4"
                 android:gravity="center"
                 android:textColor="@color/grey_dark"
-                android:text="123456" />
+                android:text="@{exchangeItem.details.volume}" />
 
         </LinearLayout>
 

@@ -57,6 +57,16 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.Exchan
         return mExchangeItems!=null ? mExchangeItems.size() : 0;
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     class ExchangeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ExchangeItemBinding binding;

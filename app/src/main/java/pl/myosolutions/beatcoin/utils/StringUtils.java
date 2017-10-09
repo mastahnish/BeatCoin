@@ -13,6 +13,7 @@ public class StringUtils {
     public static String Blank = "";
     private static String Underline ="_";
     public static String Not_applicable = "n/a";
+    private static String Svg = "svg";
 
     public static boolean isEmpty(String str) {
         return str == null || str.length() <= 0;
@@ -52,4 +53,17 @@ public class StringUtils {
     public static String getConversionCurrency(String ticker){
         return ticker.split(Underline)[0];
     }
+
+    public static String getResourceIdByCurrency(String currency){
+        if(isEmpty(currency)){
+            return Blank;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(currency.toLowerCase());
+        sb.append(Underline);
+        sb.append(Svg);
+        return sb.toString();
+    }
+
 }
