@@ -31,6 +31,10 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.Exchan
     }
 
     public void refreshData(List<ExchangeItem> items){
+        if(items == null){
+            return;
+        }
+
         this.mExchangeItems = items;
         notifyDataSetChanged();
     }

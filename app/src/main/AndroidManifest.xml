@@ -19,6 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".workflow.details.DetialsActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1c6f2c07d03208c4e75dd769d38e3e1eafd543b9" />
     </application>
 
 </manifest>

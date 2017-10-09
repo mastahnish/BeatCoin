@@ -3,6 +3,7 @@ package pl.myosolutions.beatcoin.workflow.main.list;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,11 @@ public class ResponseHelper {
 
     public static List<ExchangeItem> getListFilteredByBaseCurrency(List<ExchangeItem> listFromResponse, String currency) {
         List<ExchangeItem> list = new ArrayList<>();
+
+        if(listFromResponse == null){
+            return Collections.EMPTY_LIST;
+
+        }
 
         for(ExchangeItem item : listFromResponse){
             if(StringUtils.containsIgnoreCase(item.getBaseCurrency(), currency)){

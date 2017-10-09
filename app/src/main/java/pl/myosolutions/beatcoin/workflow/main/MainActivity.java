@@ -12,8 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
 import pl.myosolutions.beatcoin.R;
 import pl.myosolutions.beatcoin.databinding.ActivityMainBinding;
 import pl.myosolutions.beatcoin.model.ExchangeItem;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         mPresenter = new MainActivityPresenterImpl(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
