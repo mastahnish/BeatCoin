@@ -35,7 +35,7 @@
                 <ImageView
                     android:id="@+id/coin_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:srcVector="@{exchangeItem.icon}" />
 
                 <LinearLayout
@@ -58,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{exchangeItem.baseCurrencyName}"
                         android:textColor="@color/orange"
-                        android:textSize="12dp"
+                        android:textSize="@dimen/small_text_size"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -73,7 +73,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
