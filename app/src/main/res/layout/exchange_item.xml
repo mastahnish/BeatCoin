@@ -71,16 +71,16 @@
                 android:textSize="@dimen/acronym_textSize"
                 android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last)+ ` ` + exchangeItem.conversionCurrency}" />
 
-            <TextView
+            <pl.myosolutions.beatcoin.utils.ChangeTextView
                 android:id="@+id/currency_percentage"
                 android:layout_width="@dimen/percentage_change_text_area_width"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
 
-                android:text="1000%"
+                android:text="1"
                 android:textSize="@dimen/small_text_size"
-                android:visibility="invisible" />
+                android:visibility="visible" />
 
 
         </RelativeLayout>
