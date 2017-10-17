@@ -7,6 +7,7 @@
     <data>
 
         <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
+
         <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
 
         <variable
@@ -50,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{exchangeItem.baseCurrency}"
-                        android:textSize="20dp" />
+                        android:textSize="@dimen/big_text_size" />
 
                     <TextView
                         android:id="@+id/coin_fullname"
@@ -67,38 +68,51 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                   >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/change_percent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:textColor="@color/green"
-                            android:textSize="12dp" />
+                    <pl.myosolutions.beatcoin.utils.ChangeTextView
+                        android:id="@+id/change_percent"
+                        android:layout_width="@dimen/percentage_change_text_area_width"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="right|center_vertical"
+                        tools:text="100"
+                        android:text="@{CalculationUtils.calculateChange(exchangeItem.details.last, exchangeItem.details.beforelast)}"
+                        android:textSize="@dimen/small_text_size" />
 
 
-                        <TextView
-                            android:id="@+id/coin_current_value"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last) + ` ` + exchangeItem.conversionCurrency}"
-                            android:textSize="20dp" />
+                </RelativeLayout>
 
-                    </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="right"
+                    >
+
+                    <TextView
+                        android:id="@+id/coin_current_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last) + ` ` + exchangeItem.conversionCurrency}"
+                        android:textSize="@dimen/big_text_size" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -123,9 +137,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
+                android:text="@string/high"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:text="@string/high" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/coin_high_value"
@@ -133,26 +147,26 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/grey_dark"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.high)}" />
+                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.high)}"
+                android:textColor="@color/grey_dark" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
+                android:text="@string/low"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:text="@string/low" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/coin_low_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/grey_dark"
-                android:id="@+id/coin_low_value"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.low)}" />
+                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.low)}"
+                android:textColor="@color/grey_dark" />
 
         </LinearLayout>
 
@@ -173,9 +187,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="center"
+                android:text="@string/spread"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:text="@string/spread" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/coin_spread"
@@ -183,17 +197,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/grey_dark"
-                android:text="@{DigitsUtils.formatWithDelimiters(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask))}" />
+                android:text="@{DigitsUtils.formatWithDelimiters(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask))}"
+                android:textColor="@color/grey_dark" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
+                android:text="@string/volume"
                 android:textSize="12sp"
-                android:textStyle="bold"
-                android:text="@string/volume" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/coin_volume"
@@ -201,8 +215,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:textColor="@color/grey_dark"
-                android:text="@{exchangeItem.details.volume}" />
+                android:text="@{exchangeItem.details.volume}"
+                android:textColor="@color/grey_dark" />
 
         </LinearLayout>
 

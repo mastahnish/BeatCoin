@@ -27,7 +27,10 @@ public enum BaseCurrency {
     BKCOIN("BKCOIN", "BEZ KANAŁU Coin"),
     EOS("EOS", "EOS"),
     XEM("XEM", "NEM"),
-    SWT("SWT", "SwarmCity Token");
+    SWT("SWT", "SwarmCity Token"),
+    LSC("LSC", "Lifestylecoin"),
+    PIVX("PIVX", "PIVX"),
+    OMG("OMG", "OMG");
 
     private String id;
     private String name;

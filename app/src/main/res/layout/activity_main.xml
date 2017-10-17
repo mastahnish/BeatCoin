@@ -52,7 +52,7 @@
                         android:layout_alignParentBottom="true"
                         android:text="@string/coin"
                         android:textSize="12sp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginBottom="5dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorWhite" />
@@ -64,7 +64,7 @@
                         android:layout_alignParentRight="true"
                         android:textSize="12sp"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="25dp"
                         android:text="@string/price"
                         android:textStyle="bold"
                         android:textColor="@color/colorWhite" />

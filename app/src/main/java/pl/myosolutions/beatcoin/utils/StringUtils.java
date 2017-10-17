@@ -14,6 +14,7 @@ public class StringUtils {
     private static String Underline ="_";
     public static String Not_applicable = "n/a";
     private static String Svg = "svg";
+    public static String Percent = "%";
 
     public static boolean isEmpty(String str) {
         return str == null || str.length() <= 0;

@@ -20,17 +20,20 @@ public class ExchangeItemDetails {
     private String bid;
     @SerializedName("ask")
     private String ask;
+    @SerializedName("beforelast")
+    private String beforelast;
 
     public ExchangeItemDetails() {
     }
 
-    public ExchangeItemDetails(String last, String high, String low, String volume, String bid, String ask) {
+    public ExchangeItemDetails(String last, String high, String low, String volume, String bid, String ask, String beforelast) {
         this.last = last;
         this.high = high;
         this.low = low;
         this.volume = volume;
         this.bid = bid;
         this.ask = ask;
+        this.beforelast = beforelast;
     }
 
     public String getLast() {
@@ -57,6 +60,10 @@ public class ExchangeItemDetails {
         return ask;
     }
 
+    public String getBeforelast() {
+        return beforelast;
+    }
+
     @Override
     public String toString() {
         return "ExchangeItemDetails{" +
@@ -66,6 +73,7 @@ public class ExchangeItemDetails {
                 ", volume='" + volume + '\'' +
                 ", bid='" + bid + '\'' +
                 ", ask='" + ask + '\'' +
+                ", beforelast='" + beforelast + '\'' +
                 '}';
     }
 }
