@@ -5,7 +5,9 @@
     <data>
 
         <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
-        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils"/>
+        <import type="pl.myosolutions.beatcoin.utils.DrawableUtils" />
+        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
+
 
         <variable
             name="exchangeItem"
@@ -35,7 +37,8 @@
                 android:layout_marginLeft="5dp"
                 app:srcVector="@{exchangeItem.icon}" />
 
-            <TextView
+            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                style="@style/PoppinsRegularText"
                 android:id="@+id/currency_acronym"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -43,14 +46,16 @@
                 android:layout_alignTop="@id/currency_icon"
                 android:layout_marginLeft="@dimen/exchange_item_text_margin"
                 android:layout_toRightOf="@id/currency_icon"
-                android:gravity="center"
-                android:textStyle="bold"
+                android:gravity="center_vertical"
                 android:text="@{exchangeItem.baseCurrency}"
                 android:textSize="@dimen/acronym_textSize"
+                android:textColor="@color/grey_dark"
+                tools:text="BTC"
 
                 />
 
-            <TextView
+            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                style="@style/PoppinsBoldText"
                 android:id="@+id/currency_fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -58,33 +63,54 @@
                 android:layout_alignTop="@id/currency_icon"
                 android:layout_marginLeft="@dimen/exchange_item_text_margin"
                 android:layout_toRightOf="@id/currency_acronym"
-                android:gravity="center"
-                android:text="@{exchangeItem.baseCurrencyName}" />
+                android:gravity="center_vertical"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/small_text_size"
+                android:text="@{exchangeItem.baseCurrencyName}"
+                tools:text="Bitcoin"/>
 
 
-            <TextView
-                android:id="@+id/currency_current_price"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/exchange_item_text_margin"
-                android:layout_toLeftOf="@+id/currency_percentage"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="@dimen/acronym_textSize"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last)+ ` ` + exchangeItem.conversionCurrency}" />
-
-            <pl.myosolutions.beatcoin.utils.ChangeTextView
-                android:id="@+id/currency_percentage"
-                android:layout_width="@dimen/percentage_change_text_area_width"
-                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:gravity="right|center_vertical"
-                tools:text="100"
-                android:text="@{CalculationUtils.calculateChange(exchangeItem.details.last, exchangeItem.details.beforelast)}"
-                android:textSize="@dimen/small_text_size"
-                />
+                android:orientation="vertical">
 
 
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:layout_alignParentEnd="true"
+                    >
+
+
+                    <pl.myosolutions.beatcoin.utils.ChangeTextView
+                        android:id="@+id/currency_percentage"
+                        android:layout_width="@dimen/percentage_change_text_area_width"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical"
+                        android:text="@{CalculationUtils.calculateChange(exchangeItem.details.last, exchangeItem.details.beforelast)}"
+                        android:textSize="@dimen/small_text_size"
+                        tools:text="0.100%" />
+                </LinearLayout>
+
+                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                    style="@style/PoppinsRegularText"
+                    android:id="@+id/currency_current_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="right"
+                    android:textColor="@color/grey_dark"
+                    android:layout_weight="2"
+                    android:gravity="right|center_vertical"
+                    android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last)+ ` ` + exchangeItem.conversionCurrency}"
+                    android:textSize="@dimen/acronym_textSize"
+                    tools:text="100000000000000" />
+
+            </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

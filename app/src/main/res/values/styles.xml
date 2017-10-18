@@ -32,4 +32,26 @@
         <item name="color">@color/colorPrimary</item>
     </style>
 
+
+
+    <style name="PoppinsThinText">
+        <item name="fontFamily">poppins</item>
+    </style>
+
+    <style name="PoppinsBoldText">
+        <item name="fontFamily">poppinsbold</item>
+    </style>
+
+    <style name="PoppinsRegularText">
+        <item name="fontFamily">poppinsregular</item>
+    </style>
+
+    <style name="PoppinsLightText">
+        <item name="fontFamily">poppinslight</item>
+    </style>
+
+    <style name="PoppinsBoldItalicText">
+        <item name="fontFamily">poppinsbolditalic</item>
+    </style>
+
 </resources>

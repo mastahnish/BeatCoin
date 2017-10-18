@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="textColorPrimary" format="reference"/>
+    <attr name="colorWindowBackground" format="reference"/>
+    <attr name="colorAction" format="reference"/>
+
+
+    <declare-styleable name="Fonts">
+        <!-- using android's -->
+        <attr name="android:textStyle"/>
+
+        <!-- our custom attribute -->
+        <attr name="fontFamily" format="string"/>
+    </declare-styleable>
+
+</resources>

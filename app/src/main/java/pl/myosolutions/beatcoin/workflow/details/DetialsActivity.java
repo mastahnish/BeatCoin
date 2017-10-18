@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import pl.myosolutions.beatcoin.R;
 import pl.myosolutions.beatcoin.databinding.ActivityDetialsBinding;
 import pl.myosolutions.beatcoin.model.ExchangeItem;
+import pl.myosolutions.beatcoin.utils.DrawableUtils;
 
 import static pl.myosolutions.beatcoin.workflow.IActivityTransitions.ITransitionsExtras.EXCHANGE_ITEM;
 
@@ -56,14 +57,11 @@ public class DetialsActivity extends AppCompatActivity {
 
     private void initViews() {
         binding.setExchangeItem(currentItem);
-//          binding.setExchangeItem(currentItem);
-//        binding.filialDetails.coinAcronym.setText(currentItem.getBaseCurrency());
-//        binding.filialDetails.coinFullname.setText(currentItem.getBaseCurrencyName());
-//        binding.filialDetails.coinCurrentValue.setText(formatWithDelimiters(currentItem.getDetails().getLast()) + " " +  currentItem.getConversionCurrency());
-//        binding.filialDetails.coinHighValue.setText(formatWithDelimiters(currentItem.getDetails().getHigh()));
-//        binding.filialDetails.coinLowValue.setText(formatWithDelimiters(currentItem.getDetails().getLow()));
-//        binding.filialDetails.coinSpread.setText(formatWithDelimiters(calculateSpread(currentItem.getDetails().getBid(), currentItem.getDetails().getAsk())));
-//        binding.filialDetails.coinVolume.setText(currentItem.getDetails().getVolume());
+
+        if(currentItem.getIcon() == -1){
+            DrawableUtils.drawDrawableToImageView(this, currentItem.getBaseCurrency(), binding.filialDetails.coinIcon);
+        }
+
     }
 
     private void initToolbar(){

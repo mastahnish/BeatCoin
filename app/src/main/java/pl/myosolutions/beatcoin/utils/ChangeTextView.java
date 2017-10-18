@@ -29,6 +29,7 @@ public class ChangeTextView extends AppCompatTextView {
     private float mStringWidth;
     private float mStringHeight;
     private String mString;
+    private double mChangeValue = 0d;
 
     public ChangeTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,38 +49,37 @@ public class ChangeTextView extends AppCompatTextView {
         mStringHeight = bounds.height();
     }
 
+    private void getStringAsDouble(){
+        String changeText = mString.replace(StringUtils.Percent, Blank).trim();
+        if(!StringUtils.isEmpty(changeText)) mChangeValue = Double.parseDouble(changeText);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        this.mString = getText().toString();
-
-
-        int height = getMeasuredHeight();
+     /*   int height = getMeasuredHeight();
         int width = getMeasuredWidth();
 
         int px = width / 2;
-        int py = height / 2;
+        int py = height / 2;*/
 
-        String changeText = mString.replace(StringUtils.Percent, Blank).trim();
-        double changeValue = Double.parseDouble(changeText);
+        this.mString = getText().toString();
+        getStringAsDouble();
+        calculateStringDimensions();
 
         mPaint.setTextSize(ConvertUtils.convertSpToPx(16f, mContext));
         mPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
 
-        calculateStringDimensions();
 
-        Bitmap indicatorBitmap = DrawableUtils.getBitmapFromVectorDrawable(mContext,  changeValue > 0 ?  R.drawable.arrow_upward_svg : changeValue == 0 ? R.drawable.equal_svg : R.drawable.arrow_downward_svg);
-        int arrowHeight = indicatorBitmap.getHeight();
-        int arrowWidth = indicatorBitmap.getWidth();
-
-
-
+        Bitmap indicatorBitmap = DrawableUtils.getBitmapFromVectorDrawable(mContext,  mChangeValue > 0 ?  R.drawable.arrow_upward_svg : mChangeValue == 0 ? R.drawable.equal_svg : R.drawable.arrow_downward_svg);
+     /*   int arrowHeight = indicatorBitmap.getHeight();
+        int arrowWidth = indicatorBitmap.getWidth();*/
 
         canvas.drawBitmap(indicatorBitmap
-               ,(width - mStringWidth - BUFFER_X), ((getHeight()/2)-((mStringHeight/2) + BUFFER_Y)), mPaint );
+               ,(getWidth() - mStringWidth - BUFFER_X), ((getHeight()/2)-((mStringHeight/2) + BUFFER_Y)), mPaint );
 
-        setTextColor(changeValue > 0 ? ContextCompat.getColor(mContext, green) : changeValue == 0 ? ContextCompat.getColor(mContext, R.color.colorPrimary) : ContextCompat.getColor(mContext, R.color.red));
+        setTextColor(mChangeValue > 0 ? ContextCompat.getColor(mContext, green) : mChangeValue == 0 ? ContextCompat.getColor(mContext, R.color.colorPrimary) : ContextCompat.getColor(mContext, R.color.red));
 
     }
 

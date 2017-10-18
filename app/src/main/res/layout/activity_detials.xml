@@ -32,11 +32,11 @@
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways">
 
-                <TextView
+                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                    style="@style/PoppinsBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/coins"
-                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"/>
 
             </android.support.v7.widget.Toolbar>

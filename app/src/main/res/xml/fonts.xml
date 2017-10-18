@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+
+    <!--  Poppins -->
+    <family>
+        <nameset>
+            <name>poppins</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Poppins-Thin.ttf</file>
+        </fileset>
+    </family>
+
+    <!--  Poppins-Light -->
+    <family>
+        <nameset>
+            <name>poppinslight</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Poppins-Light.ttf</file>
+        </fileset>
+    </family>
+
+    <!--  Poppins-Regular -->
+    <family>
+        <nameset>
+            <name>poppinsregular</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Poppins-Regular.ttf</file>
+        </fileset>
+    </family>
+
+    <!--  Poppins-Bold -->
+    <family>
+        <nameset>
+            <name>poppinsbold</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Poppins-Bold.ttf</file>
+        </fileset>
+    </family>
+
+    <!--  Poppins-BoldItalic -->
+    <family>
+        <nameset>
+            <name>poppinsbolditalic</name>
+        </nameset>
+        <fileset>
+            <file>fonts/Poppins-BoldItalic.ttf</file>
+        </fileset>
+    </family>
+
+</familyset>

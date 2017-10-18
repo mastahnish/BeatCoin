@@ -6,6 +6,7 @@ import android.databinding.Bindable;
 import com.google.gson.annotations.SerializedName;
 
 import pl.myosolutions.beatcoin.R;
+import pl.myosolutions.beatcoin.utils.StringUtils;
 
 import static pl.myosolutions.beatcoin.utils.ResourceUtils.getResIdFromString;
 import static pl.myosolutions.beatcoin.utils.StringUtils.getResourceIdByCurrency;
@@ -76,7 +77,9 @@ public class ExchangeItem extends BaseObservable{
         exchangeItem.baseCurrencyName = getExchangeItemNameBasedOnAcronym(baseCurrency);
         exchangeItem.conversionCurrency = conversionCurrency;
         exchangeItem.details = details;
-        exchangeItem.icon = getResIdFromString(getResourceIdByCurrency(baseCurrency), R.drawable.class);
+        String resourceId = getResourceIdByCurrency(baseCurrency);
+        Class resourceClass = resourceId.contains(StringUtils.Png) ? R.mipmap.class : R.drawable.class;
+        exchangeItem.icon = getResIdFromString(resourceId, resourceClass);
         return exchangeItem;
     }
 }

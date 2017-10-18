@@ -4,7 +4,7 @@
     <dimen name="exchange_item_text_margin">10dp</dimen>
     <dimen name="toolbar_height">160dp</dimen>
     <dimen name="percentage_change_text_area_width">66dp</dimen>
-    <dimen name="acronym_textSize">16sp</dimen>
+    <dimen name="acronym_textSize">@dimen/big_text_size</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="big_text_size">20sp</dimen>
 </resources>

@@ -46,7 +46,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
+                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                        style="@style/PoppinsBoldText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -54,10 +55,10 @@
                         android:textSize="12sp"
                         android:layout_marginLeft="25dp"
                         android:layout_marginBottom="5dp"
-                        android:textStyle="bold"
                         android:textColor="@color/colorWhite" />
 
-                    <TextView
+                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                        style="@style/PoppinsBoldText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
@@ -66,7 +67,6 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginRight="25dp"
                         android:text="@string/price"
-                        android:textStyle="bold"
                         android:textColor="@color/colorWhite" />
 
                 </RelativeLayout>

@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-import java.util.Random;
 
 import pl.myosolutions.beatcoin.databinding.ExchangeItemBinding;
 import pl.myosolutions.beatcoin.model.ExchangeItem;
+import pl.myosolutions.beatcoin.utils.DrawableUtils;
 
 /**
  * Created by Jacek on 2017-09-27.
@@ -51,9 +51,12 @@ public class ExchangeAdapter extends RecyclerView.Adapter<ExchangeAdapter.Exchan
     public void onBindViewHolder(ExchangeItemViewHolder holder, int position) {
             ExchangeItem exchangeItem = mExchangeItems.get(position);
             holder.binding.setExchangeItem(exchangeItem);
-        Random r = new Random();
-        int random =  r.nextInt(3)-1;
-            holder.binding.currencyPercentage.setText(String.valueOf(random)+"%");
+
+            if(exchangeItem.getIcon() == -1){
+                DrawableUtils.drawDrawableToImageView(holder.binding.getRoot().getContext(), exchangeItem.getBaseCurrency(), holder.binding.currencyIcon);
+            }
+
+//            holder.binding.currencyPercentage.setText("1%");
     }
 
     @Override

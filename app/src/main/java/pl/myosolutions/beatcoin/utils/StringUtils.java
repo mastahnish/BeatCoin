@@ -6,7 +6,12 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.RelativeSizeSpan;
 
+import static pl.myosolutions.beatcoin.model.BaseCurrency.WAP;
+
 public class StringUtils {
+
+    private static final String TAG = StringUtils.class.getSimpleName() ;
+
     private StringUtils() {
     }
 
@@ -14,6 +19,7 @@ public class StringUtils {
     private static String Underline ="_";
     public static String Not_applicable = "n/a";
     private static String Svg = "svg";
+    public static String Png = "png";
     public static String Percent = "%";
 
     public static boolean isEmpty(String str) {
@@ -63,6 +69,12 @@ public class StringUtils {
         StringBuilder sb = new StringBuilder();
         sb.append(currency.toLowerCase());
         sb.append(Underline);
+
+        if(currency.equals(WAP.getId())){
+            sb.append(Png);
+            return sb.toString();
+        }
+
         sb.append(Svg);
         return sb.toString();
     }
