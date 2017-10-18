@@ -47,12 +47,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         initViews();
+
+        mPresenter.getNewData(IExchangeValues.Currencies.PLN);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.getNewData(IExchangeValues.Currencies.PLN);
     }
 
     private void initViews() {
