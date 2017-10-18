@@ -9,6 +9,7 @@
     </style>
 
 
+
     <style name="MyToolbar" parent="@style/ThemeOverlay.AppCompat">
         <!-- Title text -->
         <item name="android:textColorPrimary">@color/colorPrimary</item>

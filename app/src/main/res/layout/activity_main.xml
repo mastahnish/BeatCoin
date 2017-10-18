@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="15dp"
-                        android:background="@color/colorWhite" />
+                        android:background="@drawable/search_background" />
 
                 </android.support.v7.widget.Toolbar>
 
@@ -76,12 +76,20 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/activity_main_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_exchange_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </android.support.design.widget.CoordinatorLayout>
 

@@ -8,4 +8,6 @@
     <string name="coins">COINS</string>
     <string name="coin">COIN</string>
     <string name="price">PRICE</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet">Couldn\'t connect to server</string>
 </resources>

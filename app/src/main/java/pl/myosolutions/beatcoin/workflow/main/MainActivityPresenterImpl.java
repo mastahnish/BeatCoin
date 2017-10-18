@@ -8,6 +8,7 @@ import android.view.View;
 import java.util.List;
 import java.util.Map;
 
+import pl.myosolutions.beatcoin.R;
 import pl.myosolutions.beatcoin.http.TickerService;
 import pl.myosolutions.beatcoin.http.TickerServiceFactory;
 import pl.myosolutions.beatcoin.model.ExchangeItem;
@@ -51,20 +52,30 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
 
                     @Override
                     public void onError(Throwable e) {
-                        final Snackbar snackbar = Snackbar.make(mView.getRootView(), "Couldn't connect to server", Snackbar.LENGTH_INDEFINITE);
+                        mView.setSwipeToRefreshVisibility(false);
 
-                        snackbar.setAction("Retry", new View.OnClickListener() {
+                        final Snackbar snackbar = Snackbar.make(mView.getRootView(), R.string.no_internet, Snackbar.LENGTH_INDEFINITE);
+
+                        snackbar.setAction(R.string.retry, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 getNewData(currency);
                                 snackbar.dismiss();
                             }
                         }).show();
+
+                        mView.setConnectionSnackbar(snackbar);
+
                         Log.d(TAG, "onError: " + e.getMessage());
+
+
                     }
 
                     @Override
                     public void onNext(Map<String, ExchangeItemDetails> exchangeItemMap) {
+                        mView.setSwipeToRefreshVisibility(false);
+                        if (mView.getConnectionSnackbar()!=null && mView.getConnectionSnackbar().isShown()) mView.getConnectionSnackbar().dismiss();
+
                         Log.d(TAG, "onNext: " + exchangeItemMap.toString());
                         List<ExchangeItem> listFromResponse = ResponseHelper.convertResponseToExchangeItemlist(exchangeItemMap);
                         List<ExchangeItem> filteredListFromResponse = ResponseHelper.getListFilteredByConversionCurrency(listFromResponse, currency);

@@ -54,7 +54,7 @@ public class ResponseHelper {
         }
 
         for(ExchangeItem item : listFromResponse){
-            if(StringUtils.containsIgnoreCase(item.getBaseCurrency(), currency)){
+            if(StringUtils.containsIgnoreCase(item.getBaseCurrency(), currency) || StringUtils.containsIgnoreCase(item.getBaseCurrencyName(), currency)){
                 list.add(item);
             }
         }

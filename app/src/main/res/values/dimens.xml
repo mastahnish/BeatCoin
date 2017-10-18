@@ -7,4 +7,6 @@
     <dimen name="acronym_textSize">@dimen/big_text_size</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="big_text_size">20sp</dimen>
+    <dimen name="search_corners_radius">6dp</dimen>
+    <dimen name="divider_height">0.5dp</dimen>
 </resources>

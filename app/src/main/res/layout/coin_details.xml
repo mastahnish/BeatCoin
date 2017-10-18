@@ -7,7 +7,6 @@
     <data>
 
         <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
-
         <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
 
         <variable
@@ -233,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@{exchangeItem.details.volume}"
+                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.volume)}"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/big_text_size"/>
 
