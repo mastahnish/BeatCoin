@@ -31,45 +31,169 @@
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways">
 
+                </android.support.v7.widget.Toolbar>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
                     <SearchView
                         android:id="@+id/searchView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="15dp"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="30dp"
+                        android:elevation="5dp"
                         android:background="@drawable/search_background" />
 
-                </android.support.v7.widget.Toolbar>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/markets_selection_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="3"
+                            android:layout_above="@+id/headers"
+                            android:padding="5dp"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/pln_btn"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp"
+                                android:layout_margin="10dp"
+                                android:elevation="@dimen/market_btn_elevation"
+                                android:background="@drawable/market_selection_btn_background"
+
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:clickable="true"
+                                >
+                                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/PoppinsBoldText"
+                                    android:gravity="center"
+                                    android:text="PLN"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/usd_btn"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp"
+                                android:layout_margin="10dp"
+                                android:elevation="@dimen/market_btn_elevation"
+                                android:background="@drawable/market_selection_btn_background"
+
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:clickable="true"
+                                >
+                                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/PoppinsBoldText"
+                                    android:gravity="center"
+                                    android:text="USD"
+                                    />
+                            </LinearLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                            <LinearLayout
+                                android:id="@+id/eur_btn"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp"
+                                android:layout_margin="10dp"
+                                android:elevation="@dimen/market_btn_elevation"
+                                android:background="@drawable/market_selection_btn_background"
 
-                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
-                        style="@style/PoppinsBoldText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="@string/coin"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="@color/colorWhite" />
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:clickable="true"
+                                >
+                                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/PoppinsBoldText"
+                                    android:gravity="center"
+                                    android:text="EUR"
+                                    />
+                            </LinearLayout>
 
-                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
-                        style="@style/PoppinsBoldText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:textSize="12sp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="25dp"
-                        android:text="@string/price"
-                        android:textColor="@color/colorWhite" />
 
-                </RelativeLayout>
+                            <LinearLayout
+                                android:id="@+id/btc_btn"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp"
+                                android:layout_margin="10dp"
+                                android:elevation="@dimen/market_btn_elevation"
+                                android:background="@drawable/market_selection_btn_background"
+
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:clickable="true"
+                                >
+                                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    style="@style/PoppinsBoldText"
+                                    android:gravity="center"
+                                    android:text="BTC"
+                                    />
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/headers"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1">
+
+                            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                android:id="@+id/customTextView"
+                                style="@style/PoppinsBoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="25dp"
+                                android:text="@string/coin"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp" />
+
+                            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                                style="@style/PoppinsBoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginRight="25dp"
+                                android:text="@string/price"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="12sp" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -80,14 +204,13 @@
             android:id="@+id/activity_main_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_exchange_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_exchange_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

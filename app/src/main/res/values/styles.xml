@@ -37,22 +37,28 @@
 
     <style name="PoppinsThinText">
         <item name="fontFamily">poppins</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+
     </style>
 
     <style name="PoppinsBoldText">
         <item name="fontFamily">poppinsbold</item>
+        <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
     <style name="PoppinsRegularText">
         <item name="fontFamily">poppinsregular</item>
+        <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
     <style name="PoppinsLightText">
         <item name="fontFamily">poppinslight</item>
+        <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
     <style name="PoppinsBoldItalicText">
         <item name="fontFamily">poppinsbolditalic</item>
+        <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
 </resources>

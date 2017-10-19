@@ -2,11 +2,13 @@
 <resources>
     <dimen name="card_elevation">3dp</dimen>
     <dimen name="exchange_item_text_margin">10dp</dimen>
-    <dimen name="toolbar_height">160dp</dimen>
+    <dimen name="toolbar_height">200dp</dimen>
     <dimen name="percentage_change_text_area_width">66dp</dimen>
     <dimen name="acronym_textSize">@dimen/big_text_size</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="big_text_size">20sp</dimen>
     <dimen name="search_corners_radius">6dp</dimen>
     <dimen name="divider_height">0.5dp</dimen>
+    <dimen name="market_btn_elevation">5dp</dimen>
+    <dimen name="market_selector_radius">2dp</dimen>
 </resources>

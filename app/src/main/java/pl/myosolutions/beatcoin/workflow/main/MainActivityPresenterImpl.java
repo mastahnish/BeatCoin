@@ -31,6 +31,7 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
     private Activity activity;
     private IMainActivity.View mView;
     private List<ExchangeItem> currentList;
+    private String currentMarket;
 
     public MainActivityPresenterImpl(Activity ac) {
         this.activity = ac;
@@ -39,7 +40,7 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
     }
 
     @Override
-    public void getNewData(final String currency) {
+    public void getNewData() {
         TickerService service = TickerServiceFactory.createRetrofitService(TickerService.class, TickerService.SERVICE_ENDPOINT);
         service.getTickerData(TICKER_JSON)
                 .subscribeOn(Schedulers.newThread())
@@ -59,7 +60,7 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
                         snackbar.setAction(R.string.retry, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                getNewData(currency);
+                                getNewData();
                                 snackbar.dismiss();
                             }
                         }).show();
@@ -78,7 +79,7 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
 
                         Log.d(TAG, "onNext: " + exchangeItemMap.toString());
                         List<ExchangeItem> listFromResponse = ResponseHelper.convertResponseToExchangeItemlist(exchangeItemMap);
-                        List<ExchangeItem> filteredListFromResponse = ResponseHelper.getListFilteredByConversionCurrency(listFromResponse, currency);
+                        List<ExchangeItem> filteredListFromResponse = ResponseHelper.getListFilteredByConversionCurrency(listFromResponse, currentMarket);
                         setCurrentList(filteredListFromResponse);
 
                         mView.propagateServerResponse(filteredListFromResponse);
@@ -96,5 +97,13 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
 
     public void setCurrentList(List<ExchangeItem> currentList) {
         this.currentList = currentList;
+    }
+
+    public String getCurrentMarket() {
+        return currentMarket;
+    }
+
+    public void setCurrentMarket(String currentMarket) {
+        this.currentMarket = currentMarket;
     }
 }

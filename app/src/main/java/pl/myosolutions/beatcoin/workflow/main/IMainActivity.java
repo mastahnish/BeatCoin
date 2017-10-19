@@ -13,7 +13,7 @@ import pl.myosolutions.beatcoin.model.ExchangeItem;
 public interface IMainActivity {
 
     interface Presenter {
-        void getNewData(String currency);
+        void getNewData();
     }
 
     interface View {

@@ -14,7 +14,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -27,9 +29,13 @@ import pl.myosolutions.beatcoin.model.ExchangeItem;
 import pl.myosolutions.beatcoin.workflow.IActivityTransitions;
 import pl.myosolutions.beatcoin.workflow.details.DetialsActivity;
 import pl.myosolutions.beatcoin.workflow.main.list.ExchangeAdapter;
-import pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity.View, ExchangeAdapter.OnItemClickListener, SearchView.OnQueryTextListener, SwipeRefreshLayout.OnRefreshListener {
+import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.BTC;
+import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.EUR;
+import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.PLN;
+import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.USD;
+
+public class MainActivity extends AppCompatActivity implements IMainActivity.View, ExchangeAdapter.OnItemClickListener, SearchView.OnQueryTextListener, SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -38,22 +44,32 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
     private MainActivityPresenterImpl mPresenter;
     private Snackbar connectionSnackbar;
 
+    private static final String CURRENT_MARKET_KEY = "current_market_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         mPresenter = new MainActivityPresenterImpl(this);
 
+        mPresenter.setCurrentMarket(savedInstanceState!=null ? savedInstanceState.getString(CURRENT_MARKET_KEY) : PLN);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         initViews();
 
-        mPresenter.getNewData(IExchangeValues.Currencies.PLN);
+        mPresenter.getNewData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(CURRENT_MARKET_KEY, mPresenter.getCurrentMarket());
     }
 
     private void initViews() {
@@ -65,8 +81,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
         binding.rvExchangeList.addItemDecoration(itemDecorator);
 
         binding.activityMainSwipeRefresh.setOnRefreshListener(this);
-        binding.activityMainSwipeRefresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorWhite, R.color.colorPrimaryDark,  R.color.colorAccent );
+        binding.activityMainSwipeRefresh.setColorSchemeResources(R.color.colorPrimary, R.color.colorWhite, R.color.colorPrimaryDark, R.color.colorAccent);
 
+        binding.plnBtn.setOnClickListener(this);
+        binding.usdBtn.setOnClickListener(this);
+        binding.eurBtn.setOnClickListener(this);
+        binding.btcBtn.setOnClickListener(this);
+        toggleMarketSelectionButton();
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         ComponentName componentName = new ComponentName(this, MainActivity.class);
@@ -119,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
         return updateAdapter(newText);
     }
 
-    private boolean updateAdapter(String query){
-        if(adapter ==null) {
+    private boolean updateAdapter(String query) {
+        if (adapter == null) {
             return false;
         }
         List<ExchangeItem> list = mPresenter.getFilteredList(query);
@@ -139,8 +160,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode== RESULT_OK){
-            if(requestCode == IActivityTransitions.MAIN_TO_DETAILS){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IActivityTransitions.MAIN_TO_DETAILS) {
                 //do something
             }
         }
@@ -148,6 +169,69 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
 
     @Override
     public void onRefresh() {
-        mPresenter.getNewData(IExchangeValues.Currencies.PLN);
+        mPresenter.getNewData();
+    }
+
+
+
+    private void resetMarketSelectionButtons() {
+        for (int j = 0; j < binding.marketsSelectionArea.getChildCount(); j++) {
+            final LinearLayout card = (LinearLayout) binding.marketsSelectionArea.getChildAt(j);
+
+            card.setSelected(false);
+            ((TextView) card.getChildAt(0)).setTextColor(ContextCompat.getColor(this, R.color.grey_dark));
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch(id){
+            case R.id.pln_btn:
+                mPresenter.setCurrentMarket(PLN);
+                break;
+            case R.id.usd_btn:
+                mPresenter.setCurrentMarket(USD);
+                break;
+            case R.id.eur_btn:
+                mPresenter.setCurrentMarket(EUR);
+                break;
+            case R.id.btc_btn:
+                mPresenter.setCurrentMarket(BTC);
+                break;
+        }
+
+        toggleMarketSelectionButton();
+        mPresenter.getNewData();
+    }
+
+
+    private void toggleMarketSelectionButton(){
+        resetMarketSelectionButtons();
+
+
+        switch (mPresenter.getCurrentMarket()){
+
+            case PLN:
+                binding.plnBtn.setSelected(true);
+                ((TextView) binding.plnBtn.getChildAt(0)).setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+                break;
+            case USD:
+                binding.usdBtn.setSelected(true);
+                ((TextView) binding.usdBtn.getChildAt(0)).setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+                break;
+            case EUR:
+                binding.eurBtn.setSelected(true);
+                ((TextView) binding.eurBtn.getChildAt(0)).setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+                break;
+
+            case BTC:
+                binding.btcBtn.setSelected(true);
+                ((TextView) binding.btcBtn.getChildAt(0)).setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
+                break;
+        }
     }
 }
+
+
