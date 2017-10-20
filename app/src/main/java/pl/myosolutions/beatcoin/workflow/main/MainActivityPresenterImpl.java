@@ -1,10 +1,16 @@
 package pl.myosolutions.beatcoin.workflow.main;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +25,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 import static pl.myosolutions.beatcoin.http.IEndpointRequests.TICKER_JSON;
+import static pl.myosolutions.beatcoin.workflow.IActivityKeys.CURRENT_LIST_TOTAL_KEY;
 
 /**
  * Created by Jacek on 2017-09-27.
@@ -30,8 +37,9 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
     private static final String TAG = MainActivityPresenterImpl.class.getSimpleName();
     private Activity activity;
     private IMainActivity.View mView;
-    private List<ExchangeItem> currentList;
+    private List<ExchangeItem> currentListTotal;
     private String currentMarket;
+    private List<ExchangeItem> currentListMarket;
 
     public MainActivityPresenterImpl(Activity ac) {
         this.activity = ac;
@@ -79,24 +87,41 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
 
                         Log.d(TAG, "onNext: " + exchangeItemMap.toString());
                         List<ExchangeItem> listFromResponse = ResponseHelper.convertResponseToExchangeItemlist(exchangeItemMap);
+                        setCurrentListTotal(listFromResponse);
                         List<ExchangeItem> filteredListFromResponse = ResponseHelper.getListFilteredByConversionCurrency(listFromResponse, currentMarket);
-                        setCurrentList(filteredListFromResponse);
+                        setCurrentListMarket(filteredListFromResponse);
 
                         mView.propagateServerResponse(filteredListFromResponse);
                     }
                 });
     }
 
+
+    @Override
+    public void setupDataForMarket() {
+        List<ExchangeItem> filteredListFromResponse = ResponseHelper.getListFilteredByConversionCurrency(getCurrentListTotal(), getCurrentMarket());
+        setCurrentListMarket(filteredListFromResponse);
+        mView.propagateServerResponse(filteredListFromResponse);
+    }
+
+    public void setCurrentListMarket(List<ExchangeItem> currentListMarket) {
+        this.currentListMarket = currentListMarket;
+    }
+
+    public List<ExchangeItem> getCurrentListMarket() {
+        return currentListMarket;
+    }
+
     public  List<ExchangeItem> getFilteredList(String query){
-        return ResponseHelper.getListFilteredByBaseCurrency(getCurrentList(), query);
+        return ResponseHelper.getListFilteredByBaseCurrency(getCurrentListMarket(), query);
     }
 
-    public List<ExchangeItem> getCurrentList() {
-        return currentList;
+    public List<ExchangeItem> getCurrentListTotal() {
+        return currentListTotal;
     }
 
-    public void setCurrentList(List<ExchangeItem> currentList) {
-        this.currentList = currentList;
+    public void setCurrentListTotal(List<ExchangeItem> currentListTotal) {
+        this.currentListTotal = currentListTotal;
     }
 
     public String getCurrentMarket() {
@@ -105,5 +130,15 @@ public class MainActivityPresenterImpl implements IMainActivity.Presenter{
 
     public void setCurrentMarket(String currentMarket) {
         this.currentMarket = currentMarket;
+    }
+
+    public void setCurrentListsAfterRecreation(Bundle savedInstanceState) {
+        if(savedInstanceState!=null && savedInstanceState.containsKey(CURRENT_LIST_TOTAL_KEY)){
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<ExchangeItem>>(){}.getType();
+
+            setCurrentListTotal((List<ExchangeItem>) gson.fromJson(savedInstanceState.getString(CURRENT_LIST_TOTAL_KEY),listType));
+            setupDataForMarket();
+        }
     }
 }

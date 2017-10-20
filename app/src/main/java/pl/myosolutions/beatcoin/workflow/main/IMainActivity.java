@@ -14,6 +14,7 @@ public interface IMainActivity {
 
     interface Presenter {
         void getNewData();
+        void setupDataForMarket();
     }
 
     interface View {

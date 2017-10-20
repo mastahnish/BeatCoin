@@ -19,6 +19,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ import pl.myosolutions.beatcoin.workflow.IActivityTransitions;
 import pl.myosolutions.beatcoin.workflow.details.DetialsActivity;
 import pl.myosolutions.beatcoin.workflow.main.list.ExchangeAdapter;
 
+import static pl.myosolutions.beatcoin.workflow.IActivityKeys.CURRENT_LIST_TOTAL_KEY;
+import static pl.myosolutions.beatcoin.workflow.IActivityKeys.CURRENT_MARKET_KEY;
 import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.BTC;
 import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.EUR;
 import static pl.myosolutions.beatcoin.workflow.main.list.IExchangeValues.Currencies.PLN;
@@ -44,32 +47,31 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
     private MainActivityPresenterImpl mPresenter;
     private Snackbar connectionSnackbar;
 
-    private static final String CURRENT_MARKET_KEY = "current_market_key";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         mPresenter = new MainActivityPresenterImpl(this);
-
         mPresenter.setCurrentMarket(savedInstanceState!=null ? savedInstanceState.getString(CURRENT_MARKET_KEY) : PLN);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         initViews();
 
-        mPresenter.getNewData();
-    }
+        mPresenter.setCurrentListsAfterRecreation(savedInstanceState);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+        if(savedInstanceState==null) mPresenter.getNewData();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(CURRENT_MARKET_KEY, mPresenter.getCurrentMarket());
+
+        Gson gson = new Gson();
+        outState.putString(CURRENT_LIST_TOTAL_KEY, gson.toJson(mPresenter.getCurrentListTotal()));
     }
 
     private void initViews() {
@@ -203,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity.Vie
         }
 
         toggleMarketSelectionButton();
-        mPresenter.getNewData();
+        mPresenter.setupDataForMarket();
     }
 
 
