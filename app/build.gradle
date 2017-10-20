@@ -15,6 +15,18 @@ repositories {
 }
 
 
+
+def static getBeatcoinVersionCode() {
+    def minutes = System.currentTimeSeconds() / 60 - 24682868
+    def code = (int) minutes
+    System.out.println("versionCode: " + code)
+    return code
+}
+
+def static getBeatcoinVersionName() {
+    return "1.0"
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
@@ -22,8 +34,8 @@ android {
         applicationId "myosolutions.pl.beatcoin"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getBeatcoinVersionCode()
+        versionName getBeatcoinVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -50,7 +62,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:21.0.+'
+    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'io.reactivex:rxjava:1.0.+'
     compile 'io.reactivex:rxandroid:0.23.+'
