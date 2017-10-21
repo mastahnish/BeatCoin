@@ -21,7 +21,7 @@ import static pl.myosolutions.beatcoin.utils.StringUtils.Blank;
 
 public class ChangeTextView extends AppCompatTextView {
 
-    private int BUFFER_X = 15;
+    private int BUFFER_X = 18;
     private int BUFFER_Y = 5;
 
     private Context mContext;
@@ -51,7 +51,7 @@ public class ChangeTextView extends AppCompatTextView {
 
     private void getStringAsDouble(){
         String changeText = mString.replace(StringUtils.Percent, Blank).trim();
-        if(!StringUtils.isEmpty(changeText)) mChangeValue = Double.parseDouble(changeText);
+        if(!StringUtils.isEmpty(changeText)) mChangeValue = DigitsUtils.parseStringToDouble(changeText);
     }
 
     @Override

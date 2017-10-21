@@ -1,10 +1,14 @@
 package pl.myosolutions.beatcoin.utils;
 
+import android.util.Log;
+
 /**
  * Created by Jacek on 2017-10-05.
  */
 
 public class CalculationUtils {
+
+    private static final String TAG = CalculationUtils.class.getSimpleName();
 
     private static final String TWO_DIGITS = "%.2f";
 
@@ -14,8 +18,8 @@ public class CalculationUtils {
         }
 
 
-        double bidDouble = Double.parseDouble(bid);
-        double askDouble = Double.parseDouble(ask);
+        double bidDouble = DigitsUtils.parseStringToDouble(bid);
+        double askDouble = DigitsUtils.parseStringToDouble(ask);
         return String.valueOf(Math.abs(bidDouble-askDouble));
     }
 
@@ -24,13 +28,19 @@ public class CalculationUtils {
            return StringUtils.Blank;
        }
 
-       double lastDouble = Double.parseDouble(last);
-       double beforelastDouble = Double.parseDouble(beforelast);
+       double lastDouble = DigitsUtils.parseStringToDouble(last);
+       double beforelastDouble = DigitsUtils.parseStringToDouble(beforelast);
 
        double change =
                (lastDouble == 0 && beforelastDouble == 0)
                        || beforelastDouble == 0 ?
                        0 : ((lastDouble - beforelastDouble)/beforelastDouble)*100;
-       return String.format(TWO_DIGITS, change) + StringUtils.Percent;
+
+       StringBuilder builder = new StringBuilder();
+       builder.append(DigitsUtils.formatWithDelimiters(change));
+       builder.append(StringUtils.Percent);
+       String result = builder.toString();
+
+       return result;
    }
 }
