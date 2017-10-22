@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeatCoin</string>
+    <string name="app_name">Beatcoin.pl market cap</string>
     <string name="search_hint">BTC, BCC, ETH...</string>
     <string name="high">24H HIGH</string>
     <string name="low">24H LOW</string>
