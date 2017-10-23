@@ -35,6 +35,10 @@ public class ResponseHelper {
     public static List<ExchangeItem> getListFilteredByConversionCurrency(List<ExchangeItem> listFromResponse, String currency) {
         List<ExchangeItem> list = new ArrayList<>();
 
+        if(listFromResponse == null){
+            return Collections.EMPTY_LIST;
+        }
+
         for(ExchangeItem item : listFromResponse){
             if(StringUtils.containsIgnoreCase(item.getConversionCurrency(), currency)){
                 list.add(item);
