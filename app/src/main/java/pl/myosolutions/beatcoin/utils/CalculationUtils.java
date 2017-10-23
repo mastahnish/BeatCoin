@@ -1,6 +1,6 @@
 package pl.myosolutions.beatcoin.utils;
 
-import android.util.Log;
+import static pl.myosolutions.beatcoin.utils.DigitsUtils.PATTERN_DECIMAL_2;
 
 /**
  * Created by Jacek on 2017-10-05.
@@ -37,7 +37,7 @@ public class CalculationUtils {
                        0 : ((lastDouble - beforelastDouble)/beforelastDouble)*100;
 
        StringBuilder builder = new StringBuilder();
-       builder.append(DigitsUtils.formatWithDelimiters(change));
+       builder.append(DigitsUtils.formatWithDelimiters(change, PATTERN_DECIMAL_2));
        builder.append(StringUtils.Percent);
        String result = builder.toString();
 

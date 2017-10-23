@@ -113,7 +113,7 @@
                         android:layout_height="match_parent"
                         android:gravity="right|center_vertical"
                         android:layout_alignParentEnd="true"
-                        android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.last) + ` ` + exchangeItem.conversionCurrency}"
+                        android:text="@{DigitsUtils.displayPrice(exchangeItem.details.last, exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
                         android:textSize="@dimen/big_text_size" />
                 </RelativeLayout>
 
@@ -138,7 +138,7 @@
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/high"
                 android:textSize="@dimen/small_text_size"
@@ -152,7 +152,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.high)}"
+                android:text="@{DigitsUtils.displayPrice(exchangeItem.details.high, exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
+                android:maxLines="1"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/big_text_size"/>
 
@@ -160,7 +161,7 @@
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/low"
                 android:textSize="@dimen/small_text_size"
@@ -174,7 +175,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.low)}"
+                android:text="@{DigitsUtils.displayPrice(exchangeItem.details.low, exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
+                android:maxLines="1"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/big_text_size"/>
 
@@ -196,7 +198,7 @@
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/spread"
                 android:textSize="@dimen/small_text_size"
@@ -210,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@{DigitsUtils.formatWithDelimiters(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask))}"
+                android:text="@{DigitsUtils.displayValue(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask), exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/big_text_size"/>
 
@@ -218,7 +220,7 @@
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/volume"
                 android:textSize="@dimen/small_text_size"
@@ -232,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@{DigitsUtils.formatWithDelimiters(exchangeItem.details.volume)}"
+                android:text="@{DigitsUtils.displayVolume(exchangeItem.details.volume)}"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/big_text_size"/>
 
