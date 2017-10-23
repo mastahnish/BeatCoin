@@ -21,6 +21,7 @@ public class StringUtils {
     private static String Svg = "svg";
     public static String Png = "png";
     public static String Percent = "%";
+    public static String Space = " ";
 
     public static boolean isEmpty(String str) {
         return str == null || str.length() <= 0;
