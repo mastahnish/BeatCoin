@@ -16,14 +16,14 @@ repositories {
 
 
 
-def static getBeatcoinVersionCode() {
+def static getCoinbeVersionCode() {
     def minutes = System.currentTimeSeconds() / 60 - 24682868
     def code = (int) minutes
     System.out.println("versionCode: " + code)
     return code
 }
 
-def static getBeatcoinVersionName() {
+def static getCoinbeVersionName() {
     return "1.0"
 }
 
@@ -34,8 +34,8 @@ android {
         applicationId "myosolutions.pl.beatcoin"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode getBeatcoinVersionCode()
-        versionName getBeatcoinVersionName()
+        versionCode getCoinbeVersionCode()
+        versionName getCoinbeVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

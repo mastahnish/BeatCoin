@@ -6,12 +6,12 @@
 
     <data>
 
-        <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
-        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
+        <import type="pl.myosolutions.coinbe.utils.DigitsUtils" />
+        <import type="pl.myosolutions.coinbe.utils.CalculationUtils" />
 
         <variable
             name="exchangeItem"
-            type="pl.myosolutions.beatcoin.model.ExchangeItem" />
+            type="pl.myosolutions.coinbe.model.ExchangeItem" />
     </data>
 
     <LinearLayout
@@ -45,7 +45,7 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                    <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                         style="@style/PoppinsRegularText"
                         android:id="@+id/coin_acronym"
                         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                         android:text="@{exchangeItem.baseCurrency}"
                         android:textSize="@dimen/big_text_size" />
 
-                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                    <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                         style="@style/PoppinsBoldText"
                         android:id="@+id/coin_fullname"
                         android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                     android:gravity="right"
                    >
 
-                    <pl.myosolutions.beatcoin.utils.ChangeTextView
+                    <pl.myosolutions.coinbe.utils.ChangeTextView
                         android:id="@+id/change_percent"
                         android:layout_width="@dimen/percentage_change_text_area_width"
                         android:layout_height="match_parent"
@@ -106,7 +106,7 @@
                     android:gravity="right"
                     >
 
-                    <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                    <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                         style="@style/PoppinsRegularText"
                         android:id="@+id/coin_current_value"
                         android:layout_width="match_parent"
@@ -134,7 +134,7 @@
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -145,19 +145,21 @@
                 android:textColor="@color/grey_dark"
                  />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsRegularText"
                 android:id="@+id/coin_high_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:gravity="center"
                 android:text="@{DigitsUtils.displayPrice(exchangeItem.details.high, exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
-                android:maxLines="1"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/big_text_size"/>
+                android:textSize="@dimen/big_text_size"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:ellipsize="end"
+                tools:text="@string/long_value"/>
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -168,17 +170,19 @@
                 android:textColor="@color/grey_dark"
                  />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsRegularText"
                 android:id="@+id/coin_low_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:gravity="center"
                 android:text="@{DigitsUtils.displayPrice(exchangeItem.details.low, exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
-                android:maxLines="1"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/big_text_size"/>
+                android:textSize="@dimen/big_text_size"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:ellipsize="end"
+                tools:text="@string/long_value"/>
 
         </LinearLayout>
 
@@ -194,7 +198,7 @@
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -205,18 +209,21 @@
                 android:textColor="@color/grey_dark"
                 />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsRegularText"
                 android:id="@+id/coin_spread"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:gravity="center"
                 android:text="@{DigitsUtils.displayValue(CalculationUtils.calculateSpread(exchangeItem.details.bid, exchangeItem.details.ask), exchangeItem.baseCurrency, exchangeItem.conversionCurrency)}"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/big_text_size"/>
+                android:textSize="@dimen/big_text_size"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:ellipsize="end"
+                tools:text="@string/long_value"/>
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsBoldText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -227,16 +234,19 @@
                 android:textColor="@color/grey_dark"
                  />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsRegularText"
                 android:id="@+id/coin_volume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:gravity="center"
                 android:text="@{DigitsUtils.displayVolume(exchangeItem.details.volume)}"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/big_text_size"/>
+                android:textSize="@dimen/big_text_size"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:ellipsize="end"
+                tools:text="@string/long_value"/>
 
         </LinearLayout>
 

@@ -4,14 +4,14 @@
 
     <data>
 
-        <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
-        <import type="pl.myosolutions.beatcoin.utils.DrawableUtils" />
-        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
+        <import type="pl.myosolutions.coinbe.utils.DigitsUtils" />
+        <import type="pl.myosolutions.coinbe.utils.DrawableUtils" />
+        <import type="pl.myosolutions.coinbe.utils.CalculationUtils" />
 
 
         <variable
             name="exchangeItem"
-            type="pl.myosolutions.beatcoin.model.ExchangeItem" />
+            type="pl.myosolutions.coinbe.model.ExchangeItem" />
     </data>
 
 
@@ -40,7 +40,7 @@
                 android:layout_marginLeft="5dp"
                 app:srcVector="@{exchangeItem.icon}" />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsRegularText"
                 android:id="@+id/currency_acronym"
                 android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
 
                 />
 
-            <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+            <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                 style="@style/PoppinsBoldText"
                 android:id="@+id/currency_fullname"
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                     >
 
 
-                    <pl.myosolutions.beatcoin.utils.ChangeTextView
+                    <pl.myosolutions.coinbe.utils.ChangeTextView
                         android:id="@+id/currency_percentage"
                         android:layout_width="@dimen/percentage_change_text_area_width"
                         android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                         tools:text="0.100%" />
                 </LinearLayout>
 
-                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                     style="@style/PoppinsRegularText"
                     android:id="@+id/currency_current_price"
                     android:layout_width="wrap_content"

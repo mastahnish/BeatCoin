@@ -5,12 +5,12 @@
 
     <data>
 
-        <import type="pl.myosolutions.beatcoin.utils.DigitsUtils" />
-        <import type="pl.myosolutions.beatcoin.utils.CalculationUtils" />
+        <import type="pl.myosolutions.coinbe.utils.DigitsUtils" />
+        <import type="pl.myosolutions.coinbe.utils.CalculationUtils" />
 
         <variable
             name="exchangeItem"
-            type="pl.myosolutions.beatcoin.model.ExchangeItem" />
+            type="pl.myosolutions.coinbe.model.ExchangeItem" />
     </data>
 
 
@@ -32,7 +32,7 @@
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|enterAlways">
 
-                <pl.myosolutions.beatcoin.utils.fonts.CustomTextView
+                <pl.myosolutions.coinbe.utils.fonts.CustomTextView
                     style="@style/PoppinsBoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

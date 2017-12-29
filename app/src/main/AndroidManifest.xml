@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.myosolutions.beatcoin">
+    package="pl.myosolutions.coinbe">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".BeatcoinApp"
+        android:name="pl.myosolutions.coinbe.CoinbeApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".workflow.main.MainActivity">
+        <activity android:name="pl.myosolutions.coinbe.workflow.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".workflow.details.DetialsActivity"></activity>
+        <activity android:name="pl.myosolutions.coinbe.workflow.details.DetialsActivity"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="1c6f2c07d03208c4e75dd769d38e3e1eafd543b9" />
